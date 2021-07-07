@@ -33,6 +33,6 @@ class Convertor:
             amount = float(amount)
         except ValueError:
             raise ConverterException(f'Не удалось обработать количество {amount}')
-        r = requests.get(f'https://api.exchangeratesapi.io/laters?base={quote_formatted}&symbols={base_formatted}')
+        r = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={quote_formatted}&tsyms={base_formatted}')
         result = float(json.loads(r.content)['rates'][base_formatted])*amount
         return round(result, 3)
